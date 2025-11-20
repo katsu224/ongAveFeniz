@@ -1,0 +1,178 @@
+.valoresSection {
+  padding: 5rem 0;
+  background-color: #fff;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--color-primario-dark);
+  margin-bottom: 1rem;
+}
+
+.titleDecorator {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-secundario);
+  margin: 0 auto 3rem auto;
+  border-radius: 2px;
+}
+
+.valoresWrapper {
+  text-align: center;
+}
+
+.valoresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* Responsivo automático */
+  gap: 2rem;
+}
+
+/* --- LA TARJETA INTERACTIVA --- */
+.valorCard {
+  perspective: 1000px;
+  /* Necesario para efectos 3D si los usáramos, bueno tenerlo */
+  height: 280px;
+  /* Altura fija para que todas sean iguales */
+}
+
+.valorCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  /* Clave para el efecto flip si quisiéramos, o para capas */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  background: #fff;
+  /* Fondo base */
+  overflow: hidden;
+  /* Para que nada se salga de los bordes redondeados */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto al pasar el mouse: Levantamos la tarjeta y mostramos el texto */
+.valorCard:hover .valorCardInner {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px -10px rgba(var(--color-secundario-rgb), 0.2);
+  /* Sombra con un toque de color si puedes definir RGB, si no usa rgba(0,0,0,0.2) */
+}
+
+/* --- FRENTE (Siempre visible, se mueve hacia arriba al hover) --- */
+.valorCardFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 2rem;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+/* Al hacer hover, el frente se desplaza hacia arriba y se desvanece un poco */
+.valorCard:hover .valorCardFront {
+  transform: translateY(-30px);
+  opacity: 0;
+  /* Opcional: si quieres que desaparezca del todo */
+}
+
+/* --- REVERSO (Texto, aparece al hover) --- */
+.valorCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+  background: #067b5c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 16px;
+  opacity: 0;
+  /* Oculto por defecto */
+  transform: translateY(20px);
+  /* Empieza un poco más abajo */
+  transition: all 0.4s ease 0.1s;
+  /* Pequeño delay para que sea secuencial */
+  z-index: 1;
+}
+
+/* Al hacer hover, el reverso aparece y sube a su sitio */
+.valorCard:hover .valorCardBack {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 3;
+  /* Se pone por encima del frente */
+}
+
+/* --- ESTILOS INTERNOS --- */
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E63946, #F77F00);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 20px -10px rgba(247, 127, 0, 0.5);
+}
+
+.valorCard h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primario-dark);
+  margin: 0;
+}
+
+.valorCardBack p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+  /* Blanco casi puro para leer bien */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  /* En móvil, quizás sea mejor no usar hover y mostrar todo, o dejar el hover si es clickable */
+  /* Opción A: Mantener el efecto (funciona al hacer tap) */
+
+  /* Opción B: Mostrar todo siempre en móvil para evitar taps dobles */
+  /* Descomenta esto si prefieres que en móvil se vea el texto siempre: */
+  /*
+    .valorCard { height: auto; min-height: 250px; }
+    .valorCardInner { transform: none !important; }
+    .valorCardFront { position: relative; height: auto; padding-bottom: 1rem; opacity: 1 !important; transform: none !important; }
+    .valorCardBack { position: relative; opacity: 1 !important; transform: none !important; height: auto; background: transparent; color: var(--color-texto); padding-top: 0; }
+    .valorCardBack p { color: #666; }
+    */
+}
+
+.verMasBtn {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  background: var(--color-secundario);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.verMasBtn:hover {
+  background: var(--color-secundario-dark);
+}

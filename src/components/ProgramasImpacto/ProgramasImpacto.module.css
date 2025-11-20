@@ -1,0 +1,218 @@
+/* src/components/ProgramasImpacto/ProgramasImpacto.module.css */
+
+.section {
+  padding: 4rem 0; /* 64px arriba y abajo */
+  background-color: #fcfcfc; /* Un fondo casi blanco */
+}
+
+/* --- Título de Sección (Programas) --- */
+.header {
+  text-align: center;
+  max-width: 45rem; /* 720px */
+  margin: 0 auto 3rem auto; /* Centrado y con espacio abajo */
+}
+
+.sectionTitle {
+  font-size: 3.2rem; /* 36px */
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primario-dark);
+  margin-bottom: 1rem;
+}
+
+.titleDecorator {
+  width: 50px;
+  height: 4px;
+  background-color: var(--color-secundario); /* Rojo/Naranja */
+  margin: 0 auto 1.5rem auto; /* Centrado */
+  border-radius: 2px;
+}
+
+.header p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--color-gris);
+}
+
+/* --- 1. Parrilla de Programas --- */
+.programasGrid {
+  display: grid;
+  /* ANTES: grid-template-columns: repeat(2, 1fr); */
+  /* AHORA: 3 columnas para que los 3 programas queden en una fila */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.programaCard {
+  background-color: var(--color-fondo); /* Blanco */
+  border-radius: 16px; /* Bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Para que la imagen respete los bordes */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.programaCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cardImage {
+  width: 100%;
+  height: 220px; /* Altura fija para la imagen */
+}
+.cardImage img {
+  width: 100%;
+  height: 100%;
+ 
+  object-fit: cover;
+  /*
+  poner mas abajo la imagen
+  */
+  object-position: 20% 25%;
+  
+
+  /* La imagen cubre el espacio sin deformarse */
+}
+
+.cardContent {
+  padding: 1.2rem; /* 24px */
+}
+
+.cardContent h3 {
+  font-size: 1.45rem; /* 20px */
+  font-weight: 600;
+  color: var(--color-primario-dark);
+  margin-bottom: 0.5rem;
+}
+
+.cardContent p {
+  font-size: 1.04rem; /* 14px */
+  line-height: 1.6;
+  color: var(--color-gris);
+}
+
+/* --- 2. Sección de Impacto (MEJORADA) --- */
+.impactoWrapper {
+  position: relative; /* Necesario si usas texturas absolutas */
+  overflow: hidden;   /* Para que el degradado o texturas no se salgan */
+  border-radius: 24px; /* Bordes un poco más redondeados quedan más modernos */
+  padding: 4rem 2rem;  /* Un poco más de aire vertical */
+  text-align: center;
+  color: white;
+
+  /* --- EL NUEVO FONDO CON VIDA --- */
+  /* Usamos un degradado sutil en lugar de un color plano. 
+     Va desde tu verde oscuro a uno un poco más claro/azulado para dar volumen. */
+  background: linear-gradient(135deg, var(--color-primario-dark) 0%, #047857 100%);
+  
+  /* Sombra suave para que "flote" un poco sobre el fondo gris claro de la sección */
+  box-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.3);
+}
+
+
+.impactoBgTexture {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+
+.impactoContentRelative {
+  position: relative;
+  z-index: 2; /* Asegura que el texto esté encima de cualquier textura de fondo */
+}
+
+.impactoTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em; /* Un toque más compacto y moderno */
+}
+
+.impactoSubtitle { /* Antes era .impactoWrapper p */
+  font-size: 1.25rem;
+  line-height: 1.6;
+  /* Usamos un blanco con un poco de transparencia en lugar de un color fijo, se adapta mejor al degradado */
+  color: rgba(255, 255, 255, 0.9); 
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.impactoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+}
+
+.impactoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* NUEVO: Estilo para el icono */
+.impactoIcon {
+  color: var(--color-secundario-light, #fbbf24); /* Un amarillo/naranja claro destaca bien sobre verde oscuro */
+  /* Si no tienes esa variable, usa un color directo que combine, ej: #FCD34D (ámbar) */
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+/* Efecto sutil al pasar el mouse sobre todo el item */
+.impactoItem:hover .impactoIcon {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.impactoNumber {
+  font-size: 3.5rem; /* Números más grandes e impactantes */
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  /* Opcional: un ligero text-shadow para que resalten más */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.impactoLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px; /* Hace que las etiquetas en mayúsculas se lean mejor */
+  color: rgba(255, 255, 255, 0.8); /* Blanco semitransparente es más elegante que un verde claro fijo */
+}
+
+/* --- Media Queries --- */
+@media (max-width: 992px) {
+  .programasGrid {
+     /* En tablets volvemos a 2 columnas si quieres, o a 1 directamente */
+     grid-template-columns: repeat(2, 1fr); /* O repeat(1, 1fr) si prefieres */
+  }
+  /* Si usas 2 columnas y tienes 3 items, el tercero quedará solo abajo. 
+     Puedes hacer que ocupe todo el ancho para que se vea bien: */
+  .programasGrid > div:last-child:nth-child(odd) {
+      grid-column: span 2; /* El último elemento impar ocupa 2 columnas */
+  }
+ 
+}
+@media (max-width: 768px) {
+  .programasGrid {
+    grid-template-columns: 1fr; /* En móvil siempre 1 columna */
+  }
+  /* Reseteamos el span en móvil */
+  .programasGrid > div:last-child:nth-child(odd) {
+      grid-column: auto;
+  }
+}
+@media (max-width: 576px) {
+  .impactoWrapper { padding: 3rem 1.5rem; }
+  .impactoTitle { font-size: 2.2rem; }
+  .impactoNumber { font-size: 2.8rem; }
+ .impactoGrid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+/* --- Media Queries (100% Responsive) --- */
+
+
+

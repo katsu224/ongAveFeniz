@@ -1,0 +1,95 @@
+:root {
+  /* Paleta de Colores */
+  --color-primario-dark: #064e3b;
+  --color-primario: #065f46;
+  --color-primario-light: #ffffff;
+  --color-secundario: #d43c49;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* IMPORTANT: Ensure no transform/filter creates a stacking context */
+  transform: none !important;
+  filter: none !important;
+  perspective: none !important;
+  contain: none !important;
+}
+
+a,
+button {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Accesibilidad */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-secundario);
+  outline-offset: 2px;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --- CLASE UTILITARIA GLOBAL --- */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* --- ANIMACIÓN GLOBAL --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fadeInDelay1 {
+  animation: fadeIn 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.fadeInDelay2 {
+  animation: fadeIn 0.5s ease-out 0.4s forwards;
+  opacity: 0;
+}

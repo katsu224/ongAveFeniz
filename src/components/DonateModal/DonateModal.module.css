@@ -1,0 +1,185 @@
+/* Fondo oscuro que cubre toda la pantalla (Overlay) */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 1rem;
+  backdrop-filter: blur(2px);
+}
+
+/* El contenedor PRINCIPAL del modal */
+.modalContent {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  position: relative;
+}
+
+/* --- Header (Verde Oscuro) --- */
+.modalHeader {
+  background-color: #045f46;
+  color: #ffffff;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+}
+
+.modalHeader p {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.875rem;
+  color: #d1fae5;
+  line-height: 1.4;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+/* --- Cuerpo del Modal (Scrollable) --- */
+.modalBody {
+  padding: 1.5rem;
+  overflow-y: auto;
+  color: #374151;
+}
+
+/* Sección QR */
+.qrSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.qrImage {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.5rem;
+  background: white;
+  margin-bottom: 1rem;
+}
+
+.qrSection p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Secciones de Información (Banco / Yape) */
+.infoSection {
+  margin-bottom: 1.5rem;
+}
+
+.infoTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1b4d3e;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.infoLabel {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.infoValue {
+  color: #111827;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+/* Caja Amarilla de Agradecimiento */
+.thanksBox {
+  background-color: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.thanksBox strong {
+  display: block;
+  color: #92400e;
+  margin-bottom: 0.25rem;
+}
+
+.thanksBox p {
+  font-size: 0.875rem;
+  color: #b45309;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- Footer --- */
+.modalFooter {
+  padding: 1rem 1.5rem;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footerCloseButton {
+  width: 100%;
+  background-color: #045f46;
+  color: white;
+  font-weight: 600;
+  padding: 0.875rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.footerCloseButton:hover {
+  background-color: #1b3c31;
+}

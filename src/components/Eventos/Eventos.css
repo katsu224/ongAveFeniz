@@ -1,0 +1,696 @@
+/* --- SECCIÓN PRINCIPAL --- */
+.eventos-section {
+    padding: 2rem 0 5rem 0;
+    background-color: #f9fafb;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3.5rem;
+    color: var(--color-primario-dark, #064e3b);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    color: var(--color-gris, #5A5A5A);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- GRID DE EVENTOS (TARJETAS) --- */
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Centrar si solo hay una tarjeta */
+.eventos-grid:has(> :last-child:nth-child(1)) {
+    display: flex;
+    justify-content: center;
+}
+
+.evento-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.evento-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+}
+
+.evento-card-img-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.evento-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.evento-card:hover .evento-card-img {
+    transform: scale(1.05);
+}
+
+.evento-year-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-primario, #065f46);
+    padding: 0.35rem 0.85rem;
+    border-radius: 99px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.evento-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.evento-card-content h3 {
+    font-size: 1.4rem;
+    color: var(--color-primario-dark, #064e3b);
+    margin-bottom: 0.75rem;
+}
+
+.evento-card-content p {
+    color: var(--color-texto, #4b5563);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.btn-ver-historia {
+    align-self: flex-start;
+    background: transparent;
+    color: var(--color-primario);
+    border: none;
+    padding: 0;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-ver-historia::after {
+    content: '→';
+    transition: transform 0.2s ease;
+}
+
+.evento-card:hover .btn-ver-historia::after {
+    transform: translateX(5px);
+}
+
+/* --- MODAL NARRATIVO --- */
+.modal-narrativo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.modal-narrativo-container {
+    background: #fff;
+    width: 100%;
+    max-width: 960px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    margin: 40px auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-cerrar-narrativo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    backdrop-filter: blur(4px);
+}
+
+.btn-cerrar-narrativo:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Hero & Body del Modal */
+.narrativo-hero {
+    height: 45vh;
+    min-height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.narrativo-hero-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.narrativo-hero-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    color: white;
+}
+
+.narrativo-hero-content h2 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-top: 15px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.evento-fecha-badge {
+    background: var(--color-secundario, #e11d48);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+.narrativo-body {
+    padding: 50px 80px;
+}
+
+.impacto-grid {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.impacto-cifra {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primario);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.impacto-etiqueta {
+    color: var(--color-gris);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.narrativo-historia {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #374151;
+    margin-bottom: 4rem;
+    max-width: 750px;
+}
+
+.narrativo-historia p {
+    margin-bottom: 1.5rem;
+}
+
+/* --- CARRUSEL --- */
+.galeria-titulo {
+    font-size: 2rem;
+    color: var(--color-primario-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.galeria-titulo::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--color-secundario);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+.galeria-carousel-wrapper {
+    margin-bottom: 3rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    background: #000;
+}
+
+.carousel-inner {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #1a1a1a;
+}
+
+.carousel-caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.carousel-caption-overlay p {
+    font-size: 1.2rem;
+    max-width: 80%;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-counter {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.carousel-container:hover .carousel-btn {
+    opacity: 1;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-primario-dark);
+}
+
+.carousel-btn.prev {
+    left: 20px;
+}
+
+.carousel-btn.next {
+    right: 20px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.indicator.active {
+    background: white;
+    transform: scale(1.3);
+}
+
+/* --- GALERÍA COMPLETA (Grid secundaria) --- */
+.galeria-completa-section {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.btn-ver-galeria-completa {
+    background: white;
+    border: 2px solid var(--color-primario);
+    color: var(--color-primario);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-ver-galeria-completa:hover {
+    background: var(--color-primario);
+    color: white;
+}
+
+.galeria-grid-completa {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.galeria-item-mini {
+    cursor: zoom-in;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.galeria-item-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.galeria-item-mini:hover img {
+    transform: scale(1.1);
+}
+
+/* --- CTA & LIGHTBOX --- */
+.narrativo-cta {
+    background: linear-gradient(135deg, var(--color-primario-light, #d1fae5) 0%, #e0f2fe 100%);
+    padding: 4rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.narrativo-cta h3 {
+    color: var(--color-primario-dark);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.narrativo-cta p {
+    color: var(--color-primario);
+    margin-bottom: 2.5rem;
+    font-size: 1.2rem;
+}
+
+.btn-donar-evento {
+    display: inline-block;
+    background: var(--color-secundario, #d43c49);
+    color: white;
+    padding: 1.1rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(212, 60, 73, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-donar-evento:hover {
+    background: #b91c1c;
+    transform: translateY(-3px);
+}
+
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.96);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lightbox-content {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-caption {
+    color: #e5e7eb;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 800px;
+}
+
+.btn-cerrar-lightbox {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: white;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.btn-cerrar-lightbox:hover {
+    opacity: 1;
+}
+
+/* UTILIDADES */
+.fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .narrativo-body {
+        padding: 40px 50px;
+    }
+
+    .impacto-grid {
+        gap: 2rem;
+    }
+
+    .narrativo-hero-content h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .eventos-section {
+        padding: 3rem 0;
+    }
+
+    .narrativo-hero {
+        height: 300px;
+        min-height: auto;
+    }
+
+    .narrativo-hero-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .narrativo-body {
+        padding: 30px 20px;
+    }
+
+    .impacto-grid {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .impacto-item {
+        flex: 1 1 40%;
+    }
+
+    .narrativo-historia {
+        font-size: 1.1rem;
+    }
+
+    .carousel-container {
+        height: 300px;
+    }
+
+    .carousel-caption-overlay {
+        padding: 15px 20px;
+    }
+
+    .carousel-caption-overlay p {
+        font-size: 1rem;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        opacity: 1;
+    }
+
+    .galeria-grid-completa {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+}
+
+/* === MAGIA: Si solo hay UN evento, lo transformamos en DESTACADO === */
+
+/* 1. Cambiamos el contenedor para que no sea un grid de columnas pequeñas */
+.eventos-grid:has(> .evento-card:only-child) {
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    /* Permitimos que sea mucho más ancho */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 2. Hacemos la tarjeta horizontal en pantallas grandes */
+@media (min-width: 768px) {
+    .eventos-grid:has(> .evento-card:only-child) .evento-card {
+        flex-direction: row;
+        /* ¡Lo cambiamos a horizontal! */
+        max-width: 100%;
+        align-items: stretch;
+        /* Para que imagen y texto tengan misma altura */
+        min-height: 350px;
+        /* Un poco más alto para imponer presencia */
+    }
+
+    /* 3. Ajustamos la imagen para que ocupe la mitad izquierda */
+    .eventos-grid:has(> .evento-card:only-child) .evento-card-img-wrapper {
+        width: 55%;
+        /* Un poco más de la mitad para la foto */
+        height: auto;
+        /* Que se ajuste automáticamente a la altura de la tarjeta */
+    }
+
+    /* 4. Ajustamos el contenido para que ocupe la mitad derecha y esté centrado verticalmente */
+    .eventos-grid:has(> .evento-card:only-child) .evento-card-content {
+        width: 45%;
+        justify-content: center;
+        /* Centra el texto verticalmente */
+        padding: 3rem;
+        /* Más espacio para que respire */
+    }
+
+    /* Hacemos el título y texto un poco más grandes para rellenar elegantemente */
+    .eventos-grid:has(> .evento-card:only-child) .evento-card-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .eventos-grid:has(> .evento-card:only-child) .evento-card-content p {
+        font-size: 1.1rem;
+    }
+}

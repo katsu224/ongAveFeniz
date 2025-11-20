@@ -1,0 +1,137 @@
+.quienes-somos-section {
+  padding: 6rem 0;
+  background-color: #fff; /* Fondo blanco para contraste limpio */
+  overflow: hidden; /* Para evitar desbordamientos por animaciones */
+}
+
+.quienes-somos-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales en desktop */
+  gap: 4rem;
+  align-items: center;
+}
+
+/* --- ESTILOS TEXTO IZQUIERDA --- */
+.section-title-left {
+  font-size: 2.8rem;
+  color: var(--color-primario-dark, #064e3b);
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.title-decorator-left {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-secundario, #e11d48);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+.quienes-somos-lead {
+  font-size: 1.25rem;
+  color: var(--color-primario, #065f46);
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.quienes-somos-texto p {
+  color: var(--color-texto, #4b5563);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.btn-conoce-equipo {
+  background: transparent;
+  color: var(--color-primario, #065f46);
+  border: 2px solid var(--color-primario, #065f46);
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-conoce-equipo:hover {
+  background: var(--color-primario, #065f46);
+  color: white;
+  transform: translateX(5px);
+}
+
+/* --- ESTILOS IMAGEN DERECHA --- */
+.quienes-somos-imagen-wrapper {
+  position: relative;
+}
+
+.quienes-somos-img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+  transform: rotate(2deg); /* Un toque moderno y dinámico */
+  transition: transform 0.3s ease;
+}
+
+.quienes-somos-imagen-wrapper:hover .quienes-somos-img {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.experiencia-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: var(--color-secundario, #e11d48);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.experiencia-numero {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.experiencia-texto {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .quienes-somos-container {
+    grid-template-columns: 1fr; /* Una sola columna en tablets/móviles */
+    gap: 3rem;
+  }
+  .quienes-somos-texto {
+    order: 2; /* Texto abajo en móvil si prefieres, o quita esto para que quede arriba */
+    text-align: center;
+  }
+  .section-title-left, .title-decorator-left {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .quienes-somos-imagen-wrapper {
+    order: 1;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  .quienes-somos-img {
+    transform: rotate(0deg); /* Quitamos rotación en móvil para simplicidad */
+  }
+}

@@ -1,0 +1,208 @@
+/* src/components/Contacto/Contacto.module.css */
+
+.section {
+  padding: 4rem 0;
+  /* 64px arriba y abajo */
+  background-color: var(--color-fondo);
+}
+
+/* --- Título de Sección --- */
+.header {
+  text-align: center;
+  max-width: 45rem;
+  /* 720px */
+  margin: 0 auto 3rem auto;
+  /* Centrado y con espacio abajo */
+}
+
+.sectionTitle {
+  font-size: 3.25rem;
+  /* 36px */
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primario-dark);
+  margin-bottom: 1rem;
+}
+
+.titleDecorator {
+  width: 50px;
+  height: 4px;
+  background-color: var(--color-secundario);
+  /* Rojo/Naranja */
+  margin: 0 auto 1.5rem auto;
+  /* Centrado */
+  border-radius: 2px;
+}
+
+.header p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--color-gris);
+}
+
+/* --- Grid Principal (2 columnas) --- */
+.contentWrapper {
+  display: grid;
+  /* 2 columnas en desktop */
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  /* 48px */
+}
+
+/* --- Columna Izquierda (Info) --- */
+.infoWrapper h3 {
+  font-size: 1.5rem;
+  /* 24px */
+  font-weight: 600;
+  color: var(--color-primario-dark);
+  margin-bottom: 2rem;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  /* Evita que el icono se encoja */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #F4FBF9;
+  /* Verde pálido */
+  color: var(--color-primario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoText strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  margin-bottom: 0.25rem;
+}
+
+.infoText pre {
+  font-size: 0.9rem;
+  color: var(--color-gris);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Hereda la fuente */
+  line-height: 1.6;
+  white-space: pre-wrap;
+  /* Mantiene los saltos de línea */
+}
+
+
+/* --- Columna Derecha (Formulario) --- */
+.formWrapper {
+  background-color: #fcfcfc;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.formWrapper h3 {
+  font-size: 1.5rem;
+  /* 24px */
+  font-weight: 600;
+  color: var(--color-primario-dark);
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Grid para Nombre y Apellido */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup label {
+  font-size: 0.875rem;
+  /* 14px */
+  font-weight: 500;
+  color: var(--color-gris);
+  margin-bottom: 0.5rem;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: var(--color-fondo);
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 2px var(--color-primario-light);
+}
+
+.inputGroup textarea {
+  resize: vertical;
+  /* Permite al usuario ajustar la altura */
+}
+
+.submitButton {
+  background-color: var(--color-primario);
+  color: var(--color-primario-light);
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.submitButton:hover {
+  opacity: 0.85;
+}
+
+
+/* --- Media Queries (100% Responsive) --- */
+
+@media (max-width: 992px) {
+
+  /* 1 columna en tablets */
+  .contentWrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+
+  /* 1 columna para Nombre/Apellido en móviles */
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formWrapper {
+    padding: 1.5rem;
+  }
+}

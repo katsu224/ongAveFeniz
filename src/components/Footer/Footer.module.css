@@ -1,0 +1,209 @@
+/* src/components/Footer/Footer.module.css */
+
+.footer {
+  /* Usamos el color verde oscuro de tu Navbar */
+  background-color: #004f45fb;
+  color: var(--color-primario-light);
+  /* Texto claro */
+  padding: 4rem 0 2rem 0;
+  /* 64px arriba, 32px abajo */
+}
+
+/* --- 1. Grid Principal --- */
+.footerGrid {
+  display: grid;
+  /* 3 columnas en desktop */
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2.5rem;
+  /* 40px */
+}
+
+/* --- Columna 1: About --- */
+.footerAbout p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  max-width: 350px;
+}
+
+/* Logo (copiado de Navbar para consistencia) */
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  /* Más espacio en el footer */
+}
+
+.logoIcon {
+  width: 2.5rem;
+  /* 40px */
+  height: 2.5rem;
+  /* 40px */
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.logoIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logoTextContainer {
+  color: var(--color-primario-light);
+}
+
+.logoTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.logoSubtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  font-weight: 300;
+}
+
+/* Iconos de Redes Sociales */
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.socialIcons a {
+  color: var(--color-primario-light);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.socialIcons a:hover {
+  opacity: 1;
+  color: var(--color-primario-light);
+  transform: translateY(-2px);
+}
+
+/* --- Columna 2 y 3: Links y Contacto --- */
+.footerLinks,
+.footerContact {
+  padding-top: 0.5rem;
+  /* Para alinear con el texto del logo */
+}
+
+.footerLinks h4,
+.footerContact h4 {
+  font-size: 1.125rem;
+  /* 18px */
+  font-weight: 600;
+  color: var(--color-primario-light);
+  margin-bottom: 1.5rem;
+}
+
+.footerLinks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.75rem;
+}
+
+.footerLinks a {
+  font-size: 0.9rem;
+  color: var(--color-primario-light);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.footerLinks a:hover {
+  opacity: 1;
+  color: var(--color-primario-light);
+  text-decoration: underline;
+}
+
+.footerContact address,
+.footerContact p {
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.7;
+  color: var(--color-primario-light);
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+/* --- 2. Sub-Footer --- */
+.divider {
+  border: 0;
+  height: 1px;
+  /* Un verde un poco más claro que el fondo */
+  background-color: rgba(6, 95, 70, 0.6);
+  margin: 2.5rem 0 1.5rem 0;
+}
+
+.subFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Para móvil */
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  /* 14px */
+  color: var(--color-primario-light);
+  opacity: 0.6;
+}
+
+
+/* --- Media Queries (100% Responsive) --- */
+
+@media (max-width: 992px) {
+
+  /* 2 columnas en tablets */
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .footerAbout {
+    /* Hacemos que la sección "About" ocupe todo el ancho */
+    grid-column: 1 / -1;
+    /* span 2 columns */
+  }
+}
+
+@media (max-width: 576px) {
+
+  /* 1 columna en móviles */
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footerAbout {
+    grid-column: auto;
+    /* Reseteamos el span */
+    text-align: center;
+    /* Centramos todo */
+  }
+
+  .logoGroup,
+  .socialIcons {
+    justify-content: center;
+    /* Centramos logo e iconos */
+  }
+
+  .footerLinks,
+  .footerContact {
+    text-align: center;
+    /* Centramos links y contacto */
+  }
+
+  .subFooter {
+    flex-direction: column;
+    /* Apilamos el copyright */
+    text-align: center;
+  }
+}

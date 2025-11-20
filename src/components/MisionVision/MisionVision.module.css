@@ -1,0 +1,155 @@
+/* CAMBIO 1: Fondo diferente para separar de la sección anterior (blanca) */
+.section {
+  padding: 6rem 0;
+  background-color: #F8FAFC;
+  /* Un gris azulado muy suave, mejor que blanco puro */
+  color: #1e293b;
+  /* Texto base oscuro */
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 1100px;
+  /* Un poco más angosto para mejorar lectura */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Tarjetas --- */
+.card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  /* Mantenemos centrado por estética */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+
+  /* CAMBIO 2: Flexbox para forzar que los botones se alineen abajo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  /* Ocupa toda la altura disponible */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+/* Iconos */
+.iconCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.iconRed {
+  color: #DC2626;
+  background-color: #FEF2F2;
+  /* Rojo muy suave */
+}
+
+.iconGreen {
+  color: #059669;
+  background-color: #ECFDF5;
+  /* Verde muy suave */
+}
+
+/* Títulos */
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #111827;
+  /* Casi negro para máximo contraste */
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Decorador pequeño debajo del título */
+.title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  margin: 0.75rem auto 0 auto;
+  border-radius: 2px;
+}
+
+.cardMision .title::after {
+  background-color: #DC2626;
+}
+
+.cardVision .title::after {
+  background-color: #059669;
+}
+
+/* CAMBIO 3: Legibilidad del Texto */
+.text {
+  font-size: 1.125rem;
+  /* 18px, tamaño ideal para lectura */
+  line-height: 1.8;
+  /* Más espacio entre líneas */
+  color: #4B5563;
+  /* Gris oscuro (Accesible AA) */
+  margin-bottom: 2.5rem;
+
+  /* Esto empuja el botón hacia el final de la tarjeta */
+  flex-grow: 1;
+
+  /* Limitar el ancho para que las líneas no sean eternas */
+  max-width: 45ch;
+}
+
+/* --- Botones --- */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: #DC2626;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background-color: #FEF2F2;
+  /* Botón con fondo suave */
+}
+
+.btnPrimary:hover {
+  background-color: #FEE2E2;
+  gap: 10px;
+}
+
+/* Botón secundario para la tarjeta de Visión (Balance) */
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: #059669;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  /* Invisible por defecto */
+}
+
+.btnSecondary:hover {
+  background-color: #ECFDF5;
+  color: #047857;
+}

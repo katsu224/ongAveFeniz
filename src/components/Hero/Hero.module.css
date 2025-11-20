@@ -1,0 +1,205 @@
+/* src/components/Hero/Hero.module.css */
+
+.hero {
+  position: relative;
+  /* Asegura que ocupe casi toda la pantalla como en tu diseño original */
+  min-height: 95dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Evita scroll horizontal si la imagen es muy grande */
+  color: #fff;
+  /* Color base blanco */
+}
+
+/* --- Manejo del Fondo (Imagen + Overlay) --- */
+
+/* El contenedor de la imagen debe flotar "detrás" de todo */
+.backgroundImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  /* Nivel base */
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* CRÍTICO: Hace que la imagen cubra todo sin deformarse */
+  object-position: center;
+  /* Ajusta el foco de la imagen */
+}
+
+/* El degradado va ENCIMA de la imagen pero DEBAJO del texto */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: contrast(1.4);
+  /* Degradado verde oscuro sólido a la izquierda, transparente a la derecha */
+  background: linear-gradient(to right,
+      rgba(19, 48, 41, 0.712) 0%,
+      /* Verde muy oscuro solido al inicio */
+      rgba(29, 78, 66, 0.336) 40%,
+      /* Transición suave */
+      rgba(0, 0, 0, 0.1) 100%
+      /* Casi transparente al final para ver la foto */
+    );
+  z-index: 1;
+}
+
+/* --- Contenido (Texto y Botones) --- */
+.content {
+  position: relative;
+  z-index: 10;
+  /* Por encima del overlay */
+  max-width: 42rem;
+  /* Ancho máximo del texto para que no tape las caras de la foto */
+  padding-top: 2rem;
+}
+
+.titleHero {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Fuente serif elegante */
+  font-weight: 700;
+  font-size: 4rem;
+  /* 56px aprox */
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* Sombra para mejorar lectura */
+}
+
+.textHero {
+  display: block;
+  color: #FFD700;
+  /* El amarillo dorado de tu imagen */
+  margin-top: 0.6rem;
+}
+
+.subtitleHero {
+  font-size: 1.5rem;
+  /* 20px */
+  line-height: 1.6;
+  color: #f0fdf4;
+  /* Blanco con un tinte muy suave de verde */
+  margin-bottom: 2.5rem;
+  max-width: 38rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Botones --- */
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.buttonPrimary {
+  background-color: #D93025;
+  /* Rojo similar a tu captura */
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, background-color 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.buttonPrimary:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.buttonSecondary {
+  background-color: white;
+  color: black;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 2px solid white;
+  /* Borde blanco sólido */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s;
+}
+
+.buttonSecondary:hover {
+  background-color: rgb(230, 230, 230);
+  color: rgb(20, 20, 20);
+  border: 2px solid rgb(230, 230, 230);
+
+}
+
+/* --- Mouse Animado --- */
+.bounceIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  font-size: 2rem;
+  z-index: 10;
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 85vh;
+    text-align: center;
+    /* Centrar todo en móvil */
+  }
+
+  .overlay {
+    /* En móvil oscurecemos toda la foto para que se lea el texto */
+    background: rgba(6, 50, 40, 0.534);
+  }
+
+  .content {
+    margin: 0 auto;
+  }
+
+  .titleHero {
+    font-size: 2.5rem;
+  }
+
+  .buttonContainer {
+    justify-content: center;
+  }
+}
