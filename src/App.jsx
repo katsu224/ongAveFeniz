@@ -1,13 +1,14 @@
 // src/App.jsx
 import React, { useState, Suspense } from 'react';
+// IMPORTANTE: Necesitas instalar react-router-dom si no lo tienes
+// npm install react-router-dom
+import { Routes, Route } from 'react-router-dom';
 
 // --- COMPONENTES CRÍTICOS (Se cargan al instante) ---
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 
 // --- COMPONENTES NO CRÍTICOS (Lazy Loading) ---
-// Estos solo se descargarán cuando el navegador tenga tiempo libre
-// o cuando el usuario se acerque a ellos haciendo scroll.
 const QuienesSomos = React.lazy(() => import('./components/QuienesSomos/QuienesSomos'));
 const MisionVision = React.lazy(() => import('./components/MisionVision/MisionVision'));
 const SeparadorParallax = React.lazy(() => import('./components/separador/SeparadorParalax'));
@@ -18,8 +19,13 @@ const Contacto = React.lazy(() => import('./components/Contacto/Contacto'));
 const Footer = React.lazy(() => import('./components/Footer/Footer'));
 const DonateModal = React.lazy(() => import('./components/DonateModal/DonateModal'));
 
-// Un componente simple para mostrar mientras cargan las partes lazy (opcional pero recomendado)
-const LoadingFallback = () => <div style={{ py: 20, textAlign: 'center' }}>Cargando...</div>;
+// --- NUEVA PÁGINA (Lazy Loading) ---
+const Transparencia = React.lazy(() => import('./components/transparencia/Transparencia'));
+
+// Un componente simple para mostrar mientras cargan las partes lazy
+const LoadingFallback = () => (
+  <div style={{ padding: '50px 0', textAlign: 'center' }}>Cargando...</div>
+);
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,40 +35,51 @@ function App() {
 
   return (
     <>
+      {/* El Navbar se mantiene fijo en todas las rutas para navegación consistente */}
       <Navbar onDonateClick={openDonateModal} />
 
       <main>
-        <Hero onCtaClick={openDonateModal} />
-
-        {/* Suspense envuelve a los componentes lazy.
-            'fallback' es lo que se muestra mientras cargan. */}
+        {/* Usamos Suspense para manejar la carga de las rutas */}
         <Suspense fallback={<LoadingFallback />}>
-          <QuienesSomos />
-          <MisionVision />
+          <Routes>
+            
+            {/* RUTA 1: TU LANDING PAGE ORIGINAL (INICIO) */}
+            <Route path="/" element={
+              <>
+                <Hero onCtaClick={openDonateModal} />
+                
+                <QuienesSomos />
+                <MisionVision />
 
-          <SeparadorParallax
-            imagenFondo="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80"
-            texto="Nuestra fuerza radica en la unión de cada voluntad"
-          />
+                <SeparadorParallax
+                  imagenFondo="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80"
+                  texto="Nuestra fuerza radica en la unión de cada voluntad"
+                />
 
-          <Valores />
-          <ProgramasImpacto />
-          <Eventos onDntClick={openDonateModal} />
+                <Valores />
+                <ProgramasImpacto />
+                <Eventos onDntClick={openDonateModal} />
 
-          <SeparadorParallax
-            imagenFondo="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1920&q=80"
-            texto="¿Listo para ser parte del cambio? Tu apoyo hace la diferencia."
-          />
+                <SeparadorParallax
+                  imagenFondo="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1920&q=80"
+                  texto="¿Listo para ser parte del cambio? Tu apoyo hace la diferencia."
+                />
 
-          <Contacto />
+                <Contacto />
+              </>
+            } />
+
+            {/* RUTA 2: LA NUEVA PÁGINA DE TRANSPARENCIA */}
+            <Route path="/transparencia" element={<Transparencia />} />
+
+          </Routes>
         </Suspense>
       </main>
 
       <Suspense fallback={null}>
+         {/* El Footer se muestra en todas las páginas */}
          <Footer />
-         {/* El modal también puede ser lazy. Solo se cargará si se necesita.
-             Aunque si pesa poco, podrías dejarlo normal para que abra más rápido al primer clic.
-             Pruébalo así primero. */}
+         
          {isModalOpen && (
            <DonateModal
              isOpen={isModalOpen}

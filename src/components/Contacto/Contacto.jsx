@@ -39,7 +39,6 @@ function Contacto() {
   return (
     <section id="contacto" className={styles.section}>
       <div className="container">
-
         {/* --- 1. Título de la Sección --- */}
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>Contáctanos</h2>

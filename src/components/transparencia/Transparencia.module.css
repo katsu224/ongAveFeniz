@@ -1,0 +1,133 @@
+/* src/components/Transparencia/Transparencia.module.css */
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 20px;
+  background-color: #f9fafb;
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 80vh; /* Asegura que no se vea cortado si hay poco contenido */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  /* Usamos el color oscuro de tu marca (o negro suave) */
+  color: #111827; 
+  font-weight: 700;
+}
+
+.section {
+  margin-bottom: 3.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  /* TOQUE DE MARCA: Usar un verde oscuro similar a tu Navbar */
+  color: #064e3b; 
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- TARJETAS --- */
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px); /* Pequeño efecto de elevación al pasar el mouse */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.info {
+  padding-right: 20px; /* Espacio para que el texto no toque el botón */
+}
+
+.info h3 {
+  font-size: 1.1rem;
+  color: #1f2937;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.info p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* --- BOTONES CORREGIDOS --- */
+.button {
+  display: inline-block;
+  background-color: #1f2937; /* Color oscuro base */
+  color: #ffffff !important; /* Forzamos blanco para evitar que cambie a azul/morado */
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Evita que el texto del botón se parta en dos líneas */
+  border: 1px solid transparent; /* Evita saltos al añadir bordes */
+  text-align: center;
+}
+
+/* Estado Hover (Pasar el mouse) */
+.button:hover {
+  background-color: #dc2626; /* Color ROJO (como tu botón 'Donar') al pasar el mouse */
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+}
+
+/* Estado Visited (Para que no cambie de color si ya diste clic) */
+.button:visited {
+  color: #ffffff;
+}
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: flex-start; /* Alinea todo a la izquierda */
+    gap: 1rem;
+  }
+
+  .info {
+    padding-right: 0;
+  }
+
+  .action {
+    width: 100%; /* El contenedor del botón ocupa todo el ancho */
+  }
+
+  .button {
+    display: block;
+    width: 100%; /* El botón se estira para ser fácil de tocar con el dedo */
+    padding: 0.8rem;
+  }
+}

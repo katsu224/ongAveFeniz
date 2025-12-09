@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Footer.module.css';
 
 import logo from '../../assets/logo.jpg'; // Logo real de la ONG
-
+import { Link } from 'react-router-dom';
 // Iconos de redes sociales
 import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
 
@@ -78,6 +78,12 @@ function Footer() {
                 <Mail size={18} />
                 crjm2013@gmail.com
               </li>
+              <li>
+                <Link to="/transparencia" className={styles.link}>
+                  Transparencia
+                </Link>
+              </li>
+
             </ul>
           </div>
         </div>
