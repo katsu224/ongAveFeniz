@@ -51,7 +51,7 @@ const Transparencia = () => {
         },
       ]
     },
-    {
+    { 
       titulo: "Propiedad Intelectual",
       items: [
         { 
