@@ -1,7 +1,6 @@
 // src/components/Transparencia/Transparencia.jsx
 import React from 'react';
 import styles from './Transparencia.module.css';
-import { Helmet } from 'react-helmet-async';
 
 const Transparencia = () => {
   // Datos exactos basados en tus archivos de la carpeta public/documentos
@@ -73,11 +72,8 @@ const Transparencia = () => {
   return (
     
     <div className={styles.container}>
-        <Helmet>
-        <title>Transparencia y Documentos Legales | ONG Ave Fénix</title>
-        <meta name="description" content="Consulta nuestros certificados de vigencia, RUC, registros en APCI e INDECOPI. Transparencia total en nuestra gestión." />
-        <link rel="canonical" href="https://ongavefenix.org/transparencia" />
-      </Helmet>
+       <title>Transparencia y Documentos Legales | ONG Ave Fénix</title>
+      <meta name="description" content="Consulta nuestros certificados de vigencia, RUC, registros en APCI e INDECOPI. Transparencia total en nuestra gestión." />
       <header className={styles.header}>
         <h1>Transparencia y <br /> Documentos Legales</h1>
       </header>

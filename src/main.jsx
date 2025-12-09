@@ -1,18 +1,16 @@
+// src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-// 1. IMPORTA ESTO
 import { BrowserRouter } from 'react-router-dom' 
-import { HelmetProvider } from 'react-helmet-async';
+// BORRA LA LÍNEA DE HELMETPROVIDER
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* 2. ENVUELVE APP CON ESTO */}
     <BrowserRouter>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
+      {/* ELIMINA EL HELMETPROVIDER, DEJA SOLO APP */}
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
 )
