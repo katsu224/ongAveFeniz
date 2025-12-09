@@ -1,6 +1,7 @@
 // src/components/Transparencia/Transparencia.jsx
 import React from 'react';
 import styles from './Transparencia.module.css';
+import { Helmet } from 'react-helmet-async';
 
 const Transparencia = () => {
   // Datos exactos basados en tus archivos de la carpeta public/documentos
@@ -12,13 +13,13 @@ const Transparencia = () => {
           nombre: "Certificado de Vigencia – SUNARP (2024)", 
           desc: "Superintendencia Nacional de los Registros Publicos", 
           // Nombre exacto según tu imagen
-          link: "/documentos/certificado de vigencia_sunarp.pdf" 
+          link: "/documentos/certificado_de_vigencia_sunarp.pdf" 
         },
         { 
           nombre: "Constitución e Inscripción – SUNARP (2022)", 
           desc: "Superintendencia Nacional de los Registros Publicos", 
           // Nombre exacto según tu imagen
-          link: "/documentos/inscripcion de asociaciones_sunarp.pdf" 
+          link: "/documentos/inscripcion_de_asociaciones_sunarp.pdf" 
         },
       ]
     },
@@ -29,13 +30,13 @@ const Transparencia = () => {
           nombre: "Ficha RUC – SUNAT (2024)", 
           desc: "Superintendencia Nacional de Aduanas y de Administración Tributaria", 
           // Nombre exacto según tu imagen
-          link: "/documentos/ficha ruc_sunat.pdf" 
+          link: "/documentos/ficha_ruc_sunat.pdf" 
         },
         { 
           nombre: "Resolución de Perceptora de Donaciones – SUNAT (2023)", 
           desc: "Superintendencia Nacional de Aduanas", 
           // Nombre exacto según tu imagen
-          link: "/documentos/resolucion de perceptora de donaciones_sunat.pdf" 
+          link: "/documentos/resolucion_de_perceptora_de_donaciones_sunat.pdf" 
         },
       ]
     },
@@ -57,20 +58,26 @@ const Transparencia = () => {
           nombre: "Certificado de Marca – INDECOPI (2025)", 
           desc: "Registro de la Propiedad Intelectual", 
           // Nombre exacto según tu imagen
-          link: "/documentos/registro de la propiedad_indecopi.pdf" 
+          link: "/documentos/registro_de_la_propiedad_indecopi.pdf" 
         },
         { 
           nombre: "Resolución de Registro – INDECOPI (2025)", 
           desc: "Resolución oficial de registro", 
           // Nombre exacto según tu imagen
-          link: "/documentos/resolucion de registro_indecopi.pdf" 
+          link: "/documentos/resolucion_de_registro_indecopi.pdf" 
         },
       ]
     }
   ];
 
   return (
+    
     <div className={styles.container}>
+        <Helmet>
+        <title>Transparencia y Documentos Legales | ONG Ave Fénix</title>
+        <meta name="description" content="Consulta nuestros certificados de vigencia, RUC, registros en APCI e INDECOPI. Transparencia total en nuestra gestión." />
+        <link rel="canonical" href="https://ongavefenix.org/transparencia" />
+      </Helmet>
       <header className={styles.header}>
         <h1>Transparencia y <br /> Documentos Legales</h1>
       </header>

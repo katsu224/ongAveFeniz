@@ -3,7 +3,7 @@ import React, { useState, Suspense } from 'react';
 // IMPORTANTE: Necesitas instalar react-router-dom si no lo tienes
 // npm install react-router-dom
 import { Routes, Route } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet-async'; // <--- IMPORTAR
 // --- COMPONENTES CRÍTICOS (Se cargan al instante) ---
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -35,6 +35,12 @@ function App() {
 
   return (
     <>
+      {/* Título y Meta por defecto para la Home */}
+        <Helmet>
+          <title>ONG Ave Fénix | Ayuda Humanitaria en Chimbote</title>
+          <meta name="description" content="ONG dedicada a la lucha contra el infortunio y ayuda social en Nuevo Chimbote, Ancash. Voluntariado y donaciones." />
+          <link rel="canonical" href="https://avefenixperuong.pe/" />
+        </Helmet>
       {/* El Navbar se mantiene fijo en todas las rutas para navegación consistente */}
       <Navbar onDonateClick={openDonateModal} />
 

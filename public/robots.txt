@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ongavefenix.org/sitemap.xml
+Sitemap: https://avefenixperuong.pe/sitemap.xml
